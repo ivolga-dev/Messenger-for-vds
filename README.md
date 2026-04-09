@@ -29,6 +29,14 @@ npm start
 docker compose up -d --build
 ```
 
+## Команда деплоя для репозитория
+
+Если проект лежит в `https://github.com/ivolga-dev/Messenger-for-vds`, то на сервере можно выполнить:
+
+```bash
+git clone https://github.com/ivolga-dev/Messenger-for-vds.git && cd Messenger-for-vds && docker compose up -d --build
+```
+
 ## Оптимизация под малый VPS
 
 - Сообщения и группы в памяти (ограничение истории: 200 сообщений на чат).
