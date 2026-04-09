@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Messenger for VDS</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="panel">
+          <h1>Messenger</h1>
+          <p id="myCode"></p>
+          <input id="nickname" placeholder="Ваше имя" maxlength="30" />
+          <button id="saveNickname">Сохранить имя</button>
+          <label class="theme-switch">
+            <span>Тема</span>
+            <select id="themeSelect">
+              <option value="light">Светлая</option>
+              <option value="dark">Тёмная</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="panel">
+          <h2>Контакты</h2>
+          <div class="inline">
+            <input id="contactCode" placeholder="6-значный код" maxlength="6" />
+            <button id="addContact">+</button>
+          </div>
+          <ul id="contacts"></ul>
+        </div>
+
+        <div class="panel">
+          <h2>Группы</h2>
+          <input id="groupName" placeholder="Название группы" maxlength="60" />
+          <button id="createGroup">Создать</button>
+          <ul id="groups"></ul>
+        </div>
+      </aside>
+
+      <main class="chat">
+        <header class="chat-header">
+          <h2 id="chatTitle">Выберите чат</h2>
+          <div>
+            <button id="audioCall">Аудио звонок</button>
+          </div>
+        </header>
+
+        <section id="messages" class="messages"></section>
+
+        <footer class="composer">
+          <textarea id="messageInput" placeholder="Сообщение"></textarea>
+          <div class="controls">
+            <input type="file" id="fileInput" />
+            <button id="forwardBtn">Переслать последнее</button>
+            <button id="sendBtn">Отправить</button>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
