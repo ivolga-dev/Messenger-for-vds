@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  messenger:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MAX_FILE_SIZE_MB=10
+    mem_limit: 700m
+    cpus: 1.5
