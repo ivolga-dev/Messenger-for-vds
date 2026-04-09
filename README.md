@@ -1,0 +1,55 @@
+# Messenger for VDS
+
+Лёгкий веб-мессенджер в стиле Telegram с упором на работу на слабом сервере (2 GB RAM / 2 vCPU) и ~200 одновременных пользователей.
+
+## Возможности
+
+- Адаптивный UI (телефон + ПК).
+- Выбор темы (светлая/тёмная) с сохранением в localStorage.
+- Добавление контактов по индивидуальному 6-символьному коду.
+- Личные чаты и групповые чаты.
+- Реакции на сообщения.
+- Пересылка последнего сообщения.
+- Отправка файлов.
+- P2P аудио-звонки (WebRTC, сервер только для сигналинга).
+- GitHub Actions auto-deploy без `apt update/upgrade`.
+
+## Быстрый старт
+
+```bash
+npm install
+npm start
+```
+
+Открыть: http://localhost:3000
+
+## Запуск через Docker
+
+```bash
+docker compose up -d --build
+```
+
+## Команда деплоя для репозитория
+
+Если проект лежит в `https://github.com/ivolga-dev/Messenger-for-vds`, то на сервере можно выполнить:
+
+```bash
+git clone https://github.com/ivolga-dev/Messenger-for-vds.git && cd Messenger-for-vds && docker compose up -d --build
+```
+
+## Оптимизация под малый VPS
+
+- Сообщения и группы в памяти (ограничение истории: 200 сообщений на чат).
+- Ограничение размера файла: `MAX_FILE_SIZE_MB`.
+- Для контейнера выставлены лимиты CPU/RAM в `docker-compose.yml`.
+
+## Auto Deploy
+
+Workflow `.github/workflows/deploy.yml` запускается на push в `main` и:
+1. Копирует проект на сервер по SSH.
+2. Выполняет `docker compose up -d --build`.
+
+Нужны секреты репозитория:
+- `SSH_HOST`
+- `SSH_USER`
+- `SSH_KEY`
