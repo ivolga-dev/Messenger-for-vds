@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Messenger for VDS</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="left-pane">
+        <div class="logo-row">
+          <h1>Messenger</h1>
+          <span id="myCode" class="my-code"></span>
+        </div>
+
+        <nav class="tabs" id="tabs">
+          <button class="tab active" data-tab="chats">Чаты</button>
+          <button class="tab" data-tab="contacts">Контакты</button>
+          <button class="tab" data-tab="settings">Настройки</button>
+          <button class="tab" data-tab="profile">Профиль</button>
+        </nav>
+
+        <section class="tab-pane active" data-pane="chats">
+          <div class="panel">
+            <h2>Группы</h2>
+            <div class="inline">
+              <input id="groupName" placeholder="Название группы" maxlength="60" />
+              <button id="createGroup">+</button>
+            </div>
+            <ul id="groups" class="list"></ul>
+          </div>
+        </section>
+
+        <section class="tab-pane" data-pane="contacts">
+          <div class="panel">
+            <h2>Контакты</h2>
+            <div class="inline">
+              <input id="contactCode" placeholder="6-значный код" maxlength="6" />
+              <button id="addContact">+</button>
+            </div>
+            <ul id="contacts" class="list"></ul>
+          </div>
+        </section>
+
+        <section class="tab-pane" data-pane="settings">
+          <div class="panel stack">
+            <label>
+              Ваше имя
+              <input id="nickname" placeholder="Ваше имя" maxlength="30" />
+            </label>
+            <button id="saveNickname">Сохранить имя</button>
+            <label class="theme-switch">
+              Тема
+              <select id="themeSelect">
+                <option value="light">Светлая</option>
+                <option value="dark">Тёмная</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="tab-pane" data-pane="profile">
+          <div class="panel profile-card">
+            <div class="avatar">👤</div>
+            <p class="profile-name" id="profileName">Пользователь</p>
+            <p class="profile-code" id="profileCode">Код: —</p>
+          </div>
+        </section>
+      </aside>
+
+      <main class="chat-pane">
+        <header class="chat-header">
+          <h2 id="chatTitle">Выберите чат</h2>
+          <button id="audioCall" class="call-btn">📞 Позвонить</button>
+        </header>
+
+        <section id="messages" class="messages"></section>
+
+        <footer class="composer">
+          <textarea id="messageInput" placeholder="Сообщение"></textarea>
+          <div class="controls">
+            <input type="file" id="fileInput" />
+            <button id="forwardBtn">↪ Переслать последнее</button>
+            <button id="sendBtn">Отправить</button>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <div class="incoming-call hidden" id="incomingCallModal">
+      <div class="incoming-card">
+        <h3>Входящий звонок</h3>
+        <p id="incomingCallText">Кто-то звонит...</p>
+        <div class="incoming-actions">
+          <button id="rejectCall" class="danger">Отклонить</button>
+          <button id="acceptCall">Принять</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
